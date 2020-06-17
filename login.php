@@ -1,6 +1,6 @@
 <?php
 $host = 'localhost';
-$database = 'сайт';
+$database = 'site';
 $user = 'root';
 $password = '';
 ?>
