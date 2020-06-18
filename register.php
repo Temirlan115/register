@@ -23,7 +23,7 @@ $message = '';
 
 
 if(isset($_POST['submit'])){
-	$query = mysqli_query($link,"INSERT INTO users ('Id', 'Name', 'Login', 'Password') VALUES (NULL, '$name', '$log', '$pas')");
+	$query = mysqli_query($link,"INSERT INTO 'users' ('Id', 'Name', 'Login', 'Password') VALUES (NULL, '$name', '$log', '$pas')");
 	$data = mysqli_fetch_assoc($query);
 	if ($data){
 		$message='Пользователь добавлен';	
