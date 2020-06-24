@@ -1,10 +1,4 @@
 <?php
-/* Logout */
-if(isset($_GET['logout']) && $_GET['logout'] == 'yes'){
-	header("Location: admin.php");
-	die();
-}
-
 
 /* DB Connection */
 $host = 'localhost';
@@ -20,20 +14,21 @@ $name= htmlspecialchars($_POST['name1']);
 $log= htmlspecialchars($_POST['login1']);
 $pas= sha1(htmlspecialchars($_POST['password1']));
 $message = '';
+$suc ='';
 
 
-if(isset($_POST['submit'])){
-	$query = "INSERT INTO users (id, name, login, password) VALUES (NULL, $name, $log, $pas)";
+if(isset($_POST['submit'])){ 
+	$query = "INSERT INTO users (name, login, password) VALUES ('{$name}', '{$log}', '{$pas}')";
 	$data = mysqli_query($link, $query);
-	print_r($data);
+
 	if ($data){
-		$suc='Пользователь добавлен';	
+		$suc='Пользователь добавлен';
+	}else{
+		$message='Не удалось добавить пользователя';
 	}
-
 }
-
 
 mysqli_close($link);
 
-header("Location: admin.php?m={$message}");
+header("Location: admin.php?m={$message}&s={$suc}");
 ?>
