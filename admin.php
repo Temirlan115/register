@@ -24,7 +24,7 @@ if (isset($_COOKIE['log']) && $_COOKIE['log']!='tima.tl@mail.ru'){
 	<input type="submit" name='submit' value="Добавить">
 	</form>
 	<?php
-	echo "<a href='form.php'>Выход</a><br/>";
+	echo "<a href='form.php'>Назад</a><br/>";
 	?>
 </body>	
 </html>
