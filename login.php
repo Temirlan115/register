@@ -25,14 +25,22 @@ $message = '';
 
 if(isset($_POST['submit'])){
 
-    $query = mysqli_query($link, "SELECT * FROM users WHERE login='".mysqli_real_escape_string($link,$log)."' LIMIT 1");
+	$query = mysqli_query($link, "SELECT * FROM users WHERE login='".mysqli_real_escape_string($link,$log)."' LIMIT 1");
 	$data = mysqli_fetch_assoc($query);
 	
-	print_r($data);
-    if($data['password'] == sha1($pas)){
+		
+	if($data['password'] == sha1($pas)){
 		setcookie("log", $log);
 		setcookie("pass", sha1($pas), time()+3600);
-		header("Location: form.php");
+		
+		if($log==$data['login']){
+			header("Location: form.php");
+		}else{
+			setcookie("log", "", $login, time()-3600);
+			setcookie("pass", "", $password, time()-3600);
+			header("Location: form.php");
+		}
+	
 	}else{
 		$message = "Ошибка авторизации";
 	}
